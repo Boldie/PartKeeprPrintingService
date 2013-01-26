@@ -116,3 +116,42 @@ class PartKeeprRemoteAccess:
             self.lastError = "Exception while query: " + str(e)
             return False
         
+    def registerListener(self,eventName):
+        r = self.session.put(self.remoteBaseUrl + 'rest.php/EventNotification/registerListener'
+                             , params={'event':eventName} )
+
+        if r.status_code == 200:
+            rslt = r.json()
+            if ('success' in rslt and rslt['success'] ):
+                return
+            else:
+                raise Exception("Query returns: Not successfull");
+        elif r.status_code == 400:
+            rslt = r.json()
+            if 'exception' in rslt and 'message' in rslt['exception']:
+                err = rslt['exception']['message']
+            else:
+                err = 'Unknown'
+            raise Exception("Query failed: " + err)
+        else:
+            raise Exception("Unknown status code: %i" % r.status_code)
+        
+    def isListenerNotified(self):
+        r = self.session.put(self.remoteBaseUrl + 'rest.php/EventNotification/isNotified'
+                             , params={'long':'1'} )
+        
+        if r.status_code == 200:
+            rslt = r.json()
+            if ('success' in rslt and rslt['success'] ):
+                return rslt['response']['data']
+            else:
+                raise Exception('Query was not successfull!');
+        elif r.status_code == 400:
+            rslt = r.json()
+            if 'exception' in rslt and 'message' in rslt['exception']:
+                raise Exception(rslt['exception']['message'])
+            else:
+                raise Exception('Unknown error while sending request!')
+        else:
+            raise Exception("Unknown status code: %i" % r.status_code)
+        

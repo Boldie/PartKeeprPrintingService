@@ -9,6 +9,9 @@ class DeviceRawPrinter (Printer.Printer):
     
     def __init__(self, config):
         self.config = config;
+        # Check access rights and existance on startup!
+        fileStream = open( self.config['device'], 'wb' );
+        fileStream.close();
     
     def printData(self, data, contentType):
         if contentType != self.config['content-type']:

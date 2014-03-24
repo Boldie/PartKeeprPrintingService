@@ -45,9 +45,11 @@ Finally you can check it using Partkeepr (See also https://wiki.partkeepr.org/wi
 * Press "Add configuration" on the left pane
 * Select "Zebra Label Renderer" for the Renderer and as Datatybe Part.
 * Past the following stuff to Additional Configuration
+
     {
     "template" : "CT~~CD,~CC^~CT~\n^XA~TA000~JSN^LT0^MNW^MTT^PON^PMN^LH0,0^JMA^PR3,3~SD8^JUS^LRN^CI0^XZ\n^XA\n^MMT  \n^PW448\n^LL0256\n^LS0\n^CI28\n^FT20,49^A0N,31,31^FH\\^FD<<name>>^FS\n^FT20,150^A0N,23,24^TBN,390,90^FH\\^FD<<description>>^FS\n^FT20,227^A0N,34,33^FH\\^FD<<storageLocationName>>^FS\n^BY3,3,75^FT191,227^BCN,,N,N\n^FD>;<<barcodeId,%06d>>^FS\n^FT20,183^A0N,23,24^FH\\^FDStorage \\CI13 ^FS\n^FT257,250^A0N,23,24^FB72,1,0,C^FH\\^FD<<barcodeId,%06d>>^FS\n^PQ1,0,1,Y^XZ"
 }
+
 * Give it a name and do "Save Configuration"
 
 Now you have prepared the configuration, which can be used for printing. Now you can print one, by right clicking on a part in the "Part List" and choose print. Select your new configuration and the user which you have added for the service before. 
